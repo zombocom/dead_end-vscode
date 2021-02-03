@@ -10,16 +10,11 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:dead-end-vscode.helloWorld"
+		"onLanguage:ruby"
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "dead-end-vscode.helloWorld",
-				"title": "Hello World"
-			}
-		]
+		"commands": []
 	},
 	"scripts": {
 		"lint": "eslint .",
