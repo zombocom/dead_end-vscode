@@ -6,7 +6,7 @@ const cp = require('child_process');
  */
 function activate(context) {
 	const diagnosticCollection = vscode.languages.createDiagnosticCollection('ruby');
-	console.log('Extension "dead-end-vscode" is now active!');
+	console.log('Extension "dead_end-vscode" is now active!');
 
 	vscode.workspace.onDidSaveTextDocument(function (document) {
 		if(document.languageId == "ruby") {
@@ -17,30 +17,31 @@ function activate(context) {
 				console.log(stderr);
 				if (stderr == "Syntax OK") return;
 
-				const lineRegex = /❯ (\d+)/g;
+				const lineRegex = /❯\s+(\d+)(.*)/g;
 				const allLines = [];
-				let m;
+				let result;
 
-				while ((m = lineRegex.exec(stderr)) !== null) {
-					if (m.index === lineRegex.lastIndex) {
+				while ((result = lineRegex.exec(stderr)) !== null) {
+					if (result.index === lineRegex.lastIndex) {
         		lineRegex.lastIndex++;
     			}
 
-					allLines.push(parseInt(m[1]));
+					allLines.push({ lineNumber: parseInt(result[1]), lineLength: result[2].length });
 				}
 
-				// Probably should programatically get first and last column, the regex
-				// could be improved to include the actual code after the line number,
-				// so we can get the line lengths.
+				// TODO: Probably should programatically get first and last column
+				// (not yet done for first column), and the regex could be improved to
+				// include the actual code after the line number, so we can get the line
+				// lengths. (done)
 				//
 				// We might need to change the data structure of the allLines var to be
 				// a proper object instead, to store the first line number, its length,
-				// and the last line number and its length.
+				// and the last line number and its length. (done)
 				const range = new vscode.Range(
-					allLines[0] - 1,
+					allLines[0].lineNumber - 1,
 					0,
-					allLines[allLines.length - 1],
-					120
+					allLines[allLines.length - 1].lineNumber - 1,
+					allLines[allLines.length - 1].lineLength
 				);
 
 				const diagnostic = new vscode.Diagnostic(range, stderr, vscode.DiagnosticSeverity.Error);

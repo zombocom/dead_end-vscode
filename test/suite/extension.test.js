@@ -1,15 +1,33 @@
-const assert = require('assert');
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
+const chai = require('chai');
+const sinon = require('sinon');
 const vscode = require('vscode');
-// const myExtension = require('../extension');
+const { activate } = require('../../extension');
+
+chai.use(require('sinon-chai'));
+const expect = chai.expect;
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+	const document = {
+		languageId: 'ruby'
+	};
+	const context  = {
+		subscriptions: [],
+	};
+	const sandbox = sinon.createSandbox();
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+	test('Extension activation', () => {
+		const consoleLog = sandbox.stub(console, 'log');
+
+		activate(context);
+
+		expect(consoleLog).calledOnceWith('Extension "dead_end-vscode" is now active!');
+	});
+
+	test('Diagnostics creation', () => {
+		const diagnosticCollection = sandbox.stub(vscode.languages, 'createDiagnosticCollection');
+
+		activate(context);
+
+		expect(diagnosticCollection).calledOnceWith('ruby');
 	});
 });
