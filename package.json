@@ -1,38 +1,38 @@
 {
-	"name": "dead_end-vscode",
-	"displayName": "dead_end",
-	"description": "VS Code extension for Ruby's DeadEnd for better syntax errors",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.52.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onLanguage:ruby"
-	],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": []
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"pretest": "npm run lint",
-		"test": "node ./test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.52.0",
-		"chai": "^4.3.0",
-		"eslint": "^7.19.0",
-		"glob": "^7.1.6",
-		"mocha": "^8.2.1",
-		"sinon": "^9.2.4",
-		"sinon-chai": "^3.5.0",
-		"typescript": "^4.1.3",
-		"vscode-test": "^1.5.0"
-	}
+  "name": "dead_end-vscode",
+  "displayName": "dead_end",
+  "description": "VS Code extension for Ruby's DeadEnd for better syntax errors",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.52.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:ruby"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": []
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.52.0",
+    "chai": "^4.3.0",
+    "eslint": "^7.19.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.4",
+    "sinon-chai": "^3.5.0",
+    "typescript": "^4.1.3",
+    "vscode-test": "^1.5.0"
+  }
 }
