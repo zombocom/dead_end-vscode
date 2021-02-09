@@ -1,6 +1,6 @@
-# dead-end-vscode README
+# dead_end-vscode README
 
-This is the README for your extension "dead-end-vscode". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "dead_end-vscode". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
