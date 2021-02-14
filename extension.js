@@ -26,15 +26,18 @@ function activate(context) {
             lineRegex.lastIndex++;
           }
 
-          allLines.push({ lineNumber: parseInt(result[1]), lineLength: result[2].length });
+          allLines.push(
+            {
+              lineNumber: parseInt(result[1]),
+              lineLength: result[2].length,
+              startColumn: result[2].search(/\S|$/)
+            }
+          );
         }
-        //
-        // TODO: Instead of starting at column 0, it should search for the first
-        // relevant column, and start there.
-        //
+
         const range = new vscode.Range(
           allLines[0].lineNumber - 1,
-          0,
+          allLines[0].startColumn - 2,
           allLines[allLines.length - 1].lineNumber - 1,
           allLines[allLines.length - 1].lineLength
         );
