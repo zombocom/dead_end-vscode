@@ -6,7 +6,7 @@ const cp = require('child_process');
  */
 function activate(context) {
   const diagnosticCollection = vscode.languages.createDiagnosticCollection('ruby');
-  console.log('Extension "dead_end-vscode" is now active!');
+  // console.log('Extension "dead_end-vscode" is now active!');
 
   vscode.workspace.onDidSaveTextDocument(function (document) {
     if(document.languageId == "ruby") {
@@ -28,15 +28,10 @@ function activate(context) {
 
           allLines.push({ lineNumber: parseInt(result[1]), lineLength: result[2].length });
         }
-
-        // TODO: Probably should programatically get first and last column
-        // (not yet done for first column), and the regex could be improved to
-        // include the actual code after the line number, so we can get the line
-        // lengths. (done)
         //
-        // We might need to change the data structure of the allLines var to be
-        // a proper object instead, to store the first line number, its length,
-        // and the last line number and its length. (done)
+        // TODO: Instead of starting at column 0, it should search for the first
+        // relevant column, and start there.
+        //
         const range = new vscode.Range(
           allLines[0].lineNumber - 1,
           0,
