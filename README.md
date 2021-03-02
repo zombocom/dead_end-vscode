@@ -28,4 +28,4 @@ require "dead_end"
 
 ## Screenshot
 
-![screenshot showing usage of the dead_end vscode extension](dead_end-vscode.png)
+![screenshot showing usage of the dead_end vscode extension](dead-end-vscode.png)

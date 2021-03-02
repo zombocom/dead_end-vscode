@@ -6,7 +6,7 @@ const cp = require('child_process');
  */
 function activate(context) {
   const diagnosticCollection = vscode.languages.createDiagnosticCollection('ruby');
-  // console.log('Extension "dead_end-vscode" is now active!');
+  // console.log('Extension "dead-end-vscode" is now active!');
 
   vscode.workspace.onDidSaveTextDocument(function (document) {
     if(document.languageId == "ruby") {

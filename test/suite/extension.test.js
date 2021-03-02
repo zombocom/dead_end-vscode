@@ -20,7 +20,7 @@ suite('Extension Test Suite', () => {
 
   //   activate(context);
 
-  //   expect(consoleLog).calledOnceWith('Extension "dead_end-vscode" is now active!');
+  //   expect(consoleLog).calledOnceWith('Extension "dead-end-vscode" is now active!');
   // });
 
   test('Diagnostics creation', () => {

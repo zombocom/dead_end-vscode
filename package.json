@@ -1,5 +1,5 @@
 {
-  "name": "dead_end-vscode",
+  "name": "dead-end-vscode",
   "displayName": "dead_end",
   "description": "VS Code extension for Ruby's DeadEnd for better syntax errors",
   "version": "0.1.0",
