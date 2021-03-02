@@ -11,7 +11,7 @@ function activate(context) {
   vscode.workspace.onDidSaveTextDocument(function (document) {
     if(document.languageId == "ruby") {
       diagnosticCollection.clear();
-      vscode.window.showInformationMessage('Saved file, running dead_end');
+      // vscode.window.showInformationMessage('Saved file, running dead_end');
 
       cp.exec("dead_end --no-terminal " + document.fileName, (_err, _stdout, stderr) => {
         console.log(stderr);
