@@ -2,7 +2,8 @@
   "name": "dead-end-vscode",
   "displayName": "dead_end",
   "description": "VS Code extension for Ruby's DeadEnd for better syntax errors",
-  "version": "0.1.1",
+  "icon": "images/logo.png",
+  "version": "0.1.2",
   "publisher": "Zombocom",
   "engines": {
     "vscode": "^1.52.0"
