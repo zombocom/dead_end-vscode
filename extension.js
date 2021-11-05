@@ -11,15 +11,22 @@ function activate(context) {
     if(document.languageId == "ruby") {
       diagnosticCollection.clear();
 
-      cp.exec("dead_end --no-terminal " + document.fileName, (_err, _stdout, stderr) => {
-        console.log(stderr);
-        if (stderr == "Syntax OK") return;
+      cp.exec("dead_end --no-terminal " + document.fileName, (_err, stdout, stderr) => {
+        let deadEndOutput;
+        if (stderr == '') {
+          deadEndOutput = stdout;
+        } else {
+          deadEndOutput = stderr;
+        }
+
+        console.log(deadEndOutput);
+        if (deadEndOutput == "Syntax OK") return;
 
         const lineRegex = /❯\s+(\d+)(.*)/g;
         const allLines = [];
         let result;
 
-        while ((result = lineRegex.exec(stderr)) !== null) {
+        while ((result = lineRegex.exec(deadEndOutput)) !== null) {
           if (result.index === lineRegex.lastIndex) {
             lineRegex.lastIndex++;
           }
@@ -40,7 +47,7 @@ function activate(context) {
           allLines[allLines.length - 1].lineLength
         );
 
-        const diagnostic = new vscode.Diagnostic(range, stderr, vscode.DiagnosticSeverity.Error);
+        const diagnostic = new vscode.Diagnostic(range, deadEndOutput, vscode.DiagnosticSeverity.Error);
         diagnosticCollection.set(document.uri, [diagnostic]);
       });
     }
