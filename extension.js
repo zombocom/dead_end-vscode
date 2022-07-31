@@ -19,8 +19,10 @@ function activate(context) {
           deadEndOutput = stderr;
         }
 
+        const syntaxOkOutputRegex = /Syntax OK\s*/;
         console.log(deadEndOutput);
-        if (deadEndOutput == "Syntax OK") return;
+
+        if (syntaxOkOutputRegex.test(deadEndOutput)) return;
 
         const lineRegex = /❯\s+(\d+)(.*)/g;
         const allLines = [];
